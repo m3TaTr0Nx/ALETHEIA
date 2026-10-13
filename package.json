@@ -1,0 +1,15 @@
+{
+  "name": "aletheia",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "Corpus-preserving analogy fabric and hypergraph explorer.",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}
