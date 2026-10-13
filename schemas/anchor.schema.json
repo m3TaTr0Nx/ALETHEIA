@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/m3TaTr0Nx/ALETHEIA/schemas/anchor.schema.json",
+  "title": "Aletheia Two-Sided Glass Anchor",
+  "type": "object",
+  "required": ["anchorId","documentId","nodeId","start","end","quote","quoteHash","owner","intent","body","revision","orphan"],
+  "properties": {
+    "anchorId": {"type":"string"},
+    "documentId": {"type":"string"},
+    "sourceId": {"type":["string","null"]},
+    "sourceHash": {"type":["string","null"]},
+    "nodeId": {"type":"string"},
+    "start": {"type":"integer","minimum":0},
+    "end": {"type":"integer","minimum":0},
+    "quote": {"type":"string"},
+    "quoteHash": {"type":"string"},
+    "contextBeforeHash": {"type":["string","null"]},
+    "contextAfterHash": {"type":["string","null"]},
+    "owner": {"enum":["user","ai","agent"]},
+    "agentId": {"type":["string","null"]},
+    "intent": {"enum":["question","issue","support","edit","analogy","contradiction","gap","evidence","link"]},
+    "body": {"type":"string"},
+    "confidence": {"type":["number","null"],"minimum":0,"maximum":1},
+    "revision": {"type":"integer","minimum":1},
+    "orphan": {"type":"boolean"},
+    "createdAt": {"type":["string","null"]},
+    "provenance": {"type":"object"}
+  },
+  "allOf": [{"if":{"properties":{"orphan":{"const":false}}},"then":{"properties":{"end":{"exclusiveMinimum":0}}}}]
+}
