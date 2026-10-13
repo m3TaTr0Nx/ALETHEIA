@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://github.com/m3TaTr0Nx/ALETHEIA/schemas/multiview-glass.schema.json",
+  "title":"Aletheia Multiview Glass Fabric",
+  "type":"object",
+  "required":["fabricId","substrates","ports","channels","gates","knots","bridges"],
+  "properties":{
+    "fabricId":{"type":"string"},
+    "substrates":{"type":"array"},
+    "ports":{"type":"array"},
+    "channels":{"type":"array"},
+    "gates":{"type":"array"},
+    "knots":{"type":"array"},
+    "bridges":{"type":"array"},
+    "windows":{"type":"array"},
+    "metadata":{"type":"object"}
+  }
+}
