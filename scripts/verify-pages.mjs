@@ -5,7 +5,9 @@ import { fileURLToPath } from "node:url";
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..","_site");
 async function read(rel){return fs.readFile(path.join(root,rel),"utf8")}
 async function exists(rel){try{await fs.stat(path.join(root,rel));return true}catch{return false}}
-function assert(ok,message){if(!ok)throw new Error(message)}\n\nfunction crc32(buffer){
+function assert(ok,message){if(!ok)throw new Error(message)}
+
+function crc32(buffer){
   let crc=0xffffffff;
   for(const byte of buffer){
     crc^=byte;
