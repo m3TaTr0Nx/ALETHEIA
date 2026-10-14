@@ -1,12 +1,14 @@
 {
   "name": "aletheia",
-  "version": "0.2.0-alpha",
+  "version": "0.3.0-alpha",
   "private": false,
   "type": "module",
-  "description": "Corpus-preserving analogy fabric, X-Way Glass routing, DiazAI read-only canon harness, and multiscale graph research apparatus.",
+  "description": "Corpus-preserving analogy fabric, X-Way Glass routing, DiazAI read-only canon harness, multiscale graph research apparatus, and installable static PWA.",
   "scripts": {
     "start": "node server.mjs",
-    "test": "node --test"
+    "test": "node --test",
+    "build:pages": "node scripts/build-pages.mjs",
+    "verify:pages": "node scripts/verify-pages.mjs"
   },
   "engines": {
     "node": ">=20"
