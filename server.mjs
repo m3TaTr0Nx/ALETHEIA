@@ -6,9 +6,11 @@ import { buildApparatusDemo } from "./src/demo/apparatus-demo.mjs";
 import { scoreGraphs, subsetTightness } from "./src/graph/multiscale.mjs";
 import { buildGlassMatrix, buildCoreGlassChannels } from "./src/glass/lcm60-glass.mjs";
 import { DIAZAI_DEMO_CANON } from "./src/diazai/static-canon.mjs";
+import { createDiazAIProviderFromEnv } from "./src/diazai/read-only-provider.mjs";
 
 const __dirname=path.dirname(fileURLToPath(import.meta.url));
 const port=Number(process.env.PORT||3000);
+const diazaiProvider=createDiazAIProviderFromEnv(process.env);
 const MAX_BODY=2*1024*1024;
 const MIME={
   ".html":"text/html; charset=utf-8",
@@ -52,7 +54,25 @@ http.createServer(async(req,res)=>{
     const url=new URL(req.url,"http://localhost");
 
     if(req.method==="GET"&&url.pathname==="/api/health"){
-      return sendJson(res,200,{ok:true,service:"aletheia",apparatus:true,version:"0.2.0-alpha"});
+      return sendJson(res,200,{ok:true,service:"aletheia",apparatus:true,version:"0.2.0-alpha",diazaiMounted:!!diazaiProvider});
+    }
+    if(req.method==="GET"&&url.pathname==="/api/diazai/status"){
+      return sendJson(res,200,{
+        configured:!!diazaiProvider,
+        mode:"read-only",
+        capabilities:diazaiProvider?diazaiProvider.capabilities():{
+          read:false,listIndex:false,hash:false,write:false,delete:false,promoteCanon:false,mutateCanon:false
+        },
+        rootConfigured:!!process.env.DIAZAI_CANON_ROOT,
+        indexConfigured:!!process.env.DIAZAI_CANON_INDEX
+      });
+    }
+    if(req.method==="GET"&&url.pathname==="/api/diazai/claim"){
+      if(!diazaiProvider)return sendJson(res,503,{error:"diazai_canon_not_mounted",mode:"read-only"});
+      const claimId=url.searchParams.get("id");
+      if(!claimId)return sendJson(res,400,{error:"claim_id_required"});
+      const receipt=await diazaiProvider.lookupClaim(claimId);
+      return receipt?sendJson(res,200,receipt):sendJson(res,404,{error:"claim_not_found",claimId});
     }
     if(req.method==="GET"&&url.pathname==="/api/apparatus/demo"){
       return sendJson(res,200,buildApparatusDemo());
