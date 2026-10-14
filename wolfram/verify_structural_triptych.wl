@@ -21,7 +21,7 @@ motifConsequence = Graph[{1 -> 2, 2 -> 3}, DirectedEdges -> True];
 
 graphs = <|"Genesis" -> gGenesis, "Enoch" -> gEnoch, "Prometheus" -> gPrometheus|>;
 
-receipt = AssociationMap[
+receipt = Map[
   Function[g,
     <|
       "VertexCount" -> VertexCount[g],
