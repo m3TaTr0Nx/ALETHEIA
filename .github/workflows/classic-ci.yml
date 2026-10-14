@@ -1,0 +1,32 @@
+name: Aletheia Classic CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm test
+      - name: Smoke test root application
+        run: |
+          PORT=3210 node server.mjs > /tmp/aletheia.log 2>&1 &
+          PID=$!
+          trap "kill $PID" EXIT
+          for i in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:3210/ > /tmp/index.html; then
+              break
+            fi
+            sleep 0.5
+          done
+          grep -q "Aletheia" /tmp/index.html
+          grep -q "Use highlight" /tmp/index.html
+          grep -q "Terminology sweep" /tmp/index.html
+          ! grep -q "KEYSTREAM FABRIC" /tmp/index.html
