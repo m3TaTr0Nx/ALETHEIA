@@ -87,8 +87,8 @@ function renderClaims(){
 async function init(){
   try{
     const health=await fetch("/api/health").then(r=>r.json());
-    $("#healthDot").style.background=health.ok?"#7bd48e":"#f47d83";$("#healthText").textContent=health.ok?"engine online":"engine degraded";
-    demo=await fetch("/api/apparatus/demo").then(r=>r.json());
+    $("#healthDot").style.background=health.ok?"#7bd48e":"#f47d83";$("#healthText").textContent=health.ok?(health.diazaiMounted?"engine online · DiazAI read-only mount attached":"engine online · DiazAI mount pending"):"engine degraded";
+    demo=await fetch("/api/apparatus/demo").then(r=>r.json());\n    const mount=await fetch("/api/diazai/status").then(r=>r.json());\n    $("#diazaiMount").textContent=JSON.stringify(mount,null,2);
     renderOverview();
     graphOptions($("#graphSelect"));graphOptions($("#tightGraph"));pairOptions($("#pairSelect"));
     $("#graphSelect").addEventListener("change",renderGraph);
