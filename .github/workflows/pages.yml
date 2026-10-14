@@ -25,6 +25,13 @@ jobs:
       - run: npm test
       - run: npm run build:pages
       - run: npm run verify:pages
+      - name: Upload downloadable static release
+        uses: actions/upload-artifact@v4
+        with:
+          name: aletheia-static-release
+          path: _site
+          if-no-files-found: error
+          retention-days: 30
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
