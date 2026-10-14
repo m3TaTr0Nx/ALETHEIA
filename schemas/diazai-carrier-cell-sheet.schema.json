@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/m3TaTr0Nx/ALETHEIA/schemas/diazai-carrier-cell-sheet.schema.json",
+  "title": "Aletheia DiazAI Read-Only Opaque Carrier Cell Sheet",
+  "type": "object",
+  "required": ["schema", "corpusId", "canonMode", "codecId", "partitionRule", "sheetCount", "lexemeCount", "sheets"],
+  "properties": {
+    "schema": {"const": "aletheia.diazai.opaque-carrier-sheet.v1"},
+    "corpusId": {"type": "string"},
+    "corpusHash": {"type": ["string", "null"]},
+    "canonMode": {"const": "read-only"},
+    "canonRef": {"type": "string"},
+    "codecId": {"type": "string"},
+    "partitionRule": {"type": "string"},
+    "sheetCount": {"type": "integer", "minimum": 0},
+    "lexemeCount": {"type": "integer", "minimum": 0},
+    "sheets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["sheetId", "sheetOrdinal", "capacity", "cellCount", "cells"],
+        "properties": {
+          "sheetId": {"type": "string"},
+          "sheetOrdinal": {"type": "integer", "minimum": 0},
+          "capacity": {"const": 729},
+          "cellCount": {"type": "integer", "minimum": 0, "maximum": 729},
+          "cells": {
+            "type": "array",
+            "maxItems": 729,
+            "items": {
+              "type": "object",
+              "required": ["cellId", "sheetId", "sheetOrdinal", "index729", "lexeme", "lexemeId", "carrier", "canon"],
+              "properties": {
+                "cellId": {"type": "string"},
+                "sheetId": {"type": "string"},
+                "sheetOrdinal": {"type": "integer", "minimum": 0},
+                "index729": {"type": "integer", "minimum": 0, "maximum": 728},
+                "lexeme": {"type": "string"},
+                "lexemeId": {"type": "string"},
+                "carrier": {
+                  "type": "object",
+                  "required": ["addressSpace", "address", "chartSpace", "chart", "codecId", "lawId", "semanticIdentity"],
+                  "properties": {
+                    "addressSpace": {"const": "F3^6"},
+                    "address": {
+                      "type": "array",
+                      "minItems": 6,
+                      "maxItems": 6,
+                      "items": {"type": "integer", "minimum": 0, "maximum": 2}
+                    },
+                    "chartSpace": {"const": "Z9^3"},
+                    "chart": {
+                      "type": "array",
+                      "minItems": 3,
+                      "maxItems": 3,
+                      "items": {"type": "integer", "minimum": 0, "maximum": 8}
+                    },
+                    "codecId": {"type": "string"},
+                    "lawId": {"type": "string"},
+                    "semanticIdentity": {"const": false}
+                  }
+                },
+                "canon": {
+                  "type": "object",
+                  "required": ["mode", "ref"],
+                  "properties": {
+                    "mode": {"const": "read-only"},
+                    "ref": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
