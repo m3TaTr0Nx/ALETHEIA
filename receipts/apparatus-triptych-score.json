@@ -1,0 +1,12 @@
+{
+  "schema":"aletheia.demo-score-receipt.v1",
+  "generated_by":"src/demo/apparatus-demo.mjs",
+  "threshold":0.75,
+  "minimum_pairwise_similarity":0.7704217479674796,
+  "pairs":[
+    {"left":"graph:genesis-3","right":"graph:enoch-6-10","overall":0.8276060914018231,"passage":0.8468834688346883,"proposition":0.8541666666666666,"edge":0.8181818181818182},
+    {"left":"graph:genesis-3","right":"graph:prometheus-bound","overall":0.9125448028673833,"passage":0.9560931899641576,"proposition":0.8333333333333333,"edge":0.9},
+    {"left":"graph:enoch-6-10","right":"graph:prometheus-bound","overall":0.7704217479674796,"passage":0.8246612466124662,"proposition":0.7291666666666666,"edge":0.75}
+  ],
+  "semantic_identity":false
+}
