@@ -1,0 +1,38 @@
+name: Aletheia Late Alpha CI
+
+on:
+  push:
+    branches: [main, late-alpha-0.9]
+    paths:
+      - "late-alpha/**"
+      - ".github/workflows/late-alpha-ci.yml"
+  pull_request:
+    paths:
+      - "late-alpha/**"
+      - ".github/workflows/late-alpha-ci.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: late-alpha
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm run check
+      - run: npm test
+      - name: Smoke test HTTP server
+        run: |
+          PORT=3210 node server.mjs > /tmp/aletheia.log 2>&1 &
+          PID=$!
+          trap "kill $PID" EXIT
+          for i in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:3210/api/health > /tmp/health.json; then break; fi
+            sleep 0.5
+          done
+          cat /tmp/health.json
+          grep -q '"ok":true' /tmp/health.json
+          curl --fail --silent http://127.0.0.1:3210/ | grep -q 'Aletheia Late Alpha'
