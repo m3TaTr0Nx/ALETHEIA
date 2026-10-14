@@ -30,3 +30,7 @@ jobs:
           grep -q "Use highlight" /tmp/index.html
           grep -q "Terminology sweep" /tmp/index.html
           ! grep -q "KEYSTREAM FABRIC" /tmp/index.html
+          curl --fail --silent http://127.0.0.1:3210/apparatus > /tmp/apparatus.html
+          grep -q "Aletheia Research Apparatus" /tmp/apparatus.html
+          curl --fail --silent http://127.0.0.1:3210/api/apparatus/demo > /tmp/demo.json
+          node -e "const fs=require('fs'); const d=JSON.parse(fs.readFileSync('/tmp/demo.json','utf8')); if(d.minimumPairwiseSimilarity<=0.75) process.exit(1);"

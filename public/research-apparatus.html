@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0f15">
+<title>Aletheia Research Apparatus</title>
+<link rel="stylesheet" href="/public/research-apparatus.css">
+</head>
+<body>
+<header class="hero">
+  <div>
+    <div class="eyebrow">ALETHEIA RESEARCH APPARATUS · PRODUCTION CANDIDATE</div>
+    <h1>Structure before synthesis.</h1>
+    <p>Three source-derived graphs, multiscale similarity, subset tightness, X-Way Glass harmonic routing, DiazAI read-only canon receipts, and structured philosophy claims.</p>
+  </div>
+  <div class="health"><span id="healthDot"></span><span id="healthText">connecting…</span></div>
+</header>
+
+<nav id="tabs">
+  <button class="active" data-view="overview">Overview</button>
+  <button data-view="graphs">Graphs</button>
+  <button data-view="multiscale">Multiscale</button>
+  <button data-view="glass">X-Way Glass</button>
+  <button data-view="canon">DiazAI Canon</button>
+  <button data-view="claims">Philosophy</button>
+</nav>
+
+<main>
+<section class="view active" id="overview">
+  <div class="notice">Similarity is structural. No score below is interpreted as semantic identity, historical dependence, or theological equivalence.</div>
+  <div id="sourceCards" class="source-grid"></div>
+  <article class="panel">
+    <div class="panel-head"><div><span class="tag">PAIRWISE DEMO</span><h2>All three normalized graphs exceed 75%</h2></div><strong id="minimumScore" class="big-score">—</strong></div>
+    <div id="pairCards" class="pair-grid"></div>
+  </article>
+</section>
+
+<section class="view" id="graphs">
+  <div class="toolbar">
+    <label>Graph<select id="graphSelect"></select></label>
+  </div>
+  <div class="grid two">
+    <article class="panel"><span class="tag">SOURCE-DERIVED GRAPH</span><h2 id="graphName"></h2><svg id="graphSvg" viewBox="0 0 920 610" aria-label="Interactive graph"></svg></article>
+    <article class="panel"><span class="tag">NODE / EDGE INSPECTOR</span><h2>Selected object</h2><pre id="objectInspector">Tap a node or edge.</pre><h3>Recursive self-similarity</h3><div id="selfSimilarity"></div></article>
+  </div>
+</section>
+
+<section class="view" id="multiscale">
+  <div class="grid two">
+    <article class="panel">
+      <span class="tag">PASSAGE → PROPOSITION → EDGE</span>
+      <h2>Pairwise structural score</h2>
+      <label>Pair<select id="pairSelect"></select></label>
+      <div id="scaleBars"></div>
+      <pre id="scoreComponents"></pre>
+    </article>
+    <article class="panel">
+      <span class="tag">CATEGORY / SUBCATEGORY CORRELATES</span>
+      <h2>Subset tightness</h2>
+      <label>Graph<select id="tightGraph"></select></label>
+      <label>Subset<select id="subsetSelect"><option value="transfer">transfer</option><option value="governance">governance</option><option value="recipientChange">recipient change</option></select></label>
+      <div id="tightnessBars"></div>
+      <p class="small">Carrier compactness is shown separately and is not used as semantic evidence.</p>
+    </article>
+  </div>
+</section>
+
+<section class="view" id="glass">
+  <article class="panel">
+    <span class="tag">LCM60 / GCD ROUTING</span>
+    <h2>X-Way Glass channels</h2>
+    <p class="small">LCM gives the synchronization period (“WHEN”); GCD gives the compatibility stratum (“WHICH”). The displayed gauge integral is an Aletheia-defined discrete accumulation, not a DiazAI canon theorem.</p>
+    <div id="laneRows"></div>
+  </article>
+  <div class="grid two">
+    <article class="panel"><h2>Channel pair</h2><label>Left<select id="glassLeft"></select></label><label>Right<select id="glassRight"></select></label><div id="pairGauge"></div></article>
+    <article class="panel"><h2>60-tick coupling</h2><div id="tickGrid" class="tick-grid"></div></article>
+  </div>
+</section>
+
+<section class="view" id="canon">
+  <div class="grid two">
+    <article class="panel"><span class="tag">READ-ONLY DIAZAI</span><h2>Canon receipts</h2><div id="canonClaims"></div></article>
+    <article class="panel"><span class="tag">OPAQUE CARRIER CELLS</span><h2>Demo carrier sheet</h2><div id="carrierCells" class="carrier-grid"></div></article>
+  </div>
+  <article class="panel"><h2>External DiazAI mount</h2><pre id="diazaiMount">checking read-only mount…</pre></article>\n  <article class="panel"><h2>Firewall</h2><pre id="firewall"></pre></article>
+</section>
+
+<section class="view" id="claims">
+  <article class="panel"><span class="tag">STRUCTURED PHILOSOPHY ENGINE</span><h2>Comparative claims</h2><div id="claimCards"></div></article>
+</section>
+</main>
+
+<div id="toast" aria-live="polite"></div>
+<script type="module" src="/public/research-apparatus.js"></script>
+</body>
+</html>

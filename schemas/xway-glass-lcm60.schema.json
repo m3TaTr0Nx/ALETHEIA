@@ -1,0 +1,23 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://github.com/m3TaTr0Nx/ALETHEIA/schemas/xway-glass-lcm60.schema.json",
+  "title":"Aletheia X-Way Glass LCM60 Routing Fabric",
+  "type":"object",
+  "required":["schema","cycle","channels","pairs"],
+  "properties":{
+    "schema":{"const":"aletheia.xway-glass.lcm60.v1"},
+    "cycle":{"const":60},
+    "canonRefs":{"type":"array","items":{"type":"string"}},
+    "channels":{"type":"array","items":{
+      "type":"object",
+      "required":["id","lane","domain","ticks"],
+      "properties":{
+        "id":{"type":"string"},
+        "lane":{"type":"integer","minimum":1,"maximum":6},
+        "domain":{"type":"string"},
+        "ticks":{"type":"array","items":{"type":"integer","minimum":1,"maximum":60}}
+      }
+    }},
+    "pairs":{"type":"array"}
+  }
+}
