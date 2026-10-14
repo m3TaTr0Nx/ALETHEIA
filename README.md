@@ -23,6 +23,12 @@ It provides:
 - provenance-preserving JSON export;
 - mobile and desktop responsive use.
 
+## Mobile and static access
+
+Aletheia ships as an installable static PWA and as a single-file standalone HTML build. Replit is not required.
+
+See [Mobile Access and Static Deployment](docs/MOBILE_ACCESS.md) for the GitHub Pages one-time setup, Android install steps, offline behavior, and standalone fallback.
+
 Run locally with Node 20+:
 
 ```bash
