@@ -11,12 +11,12 @@ export function laneTicks(m, cycle=60){
 
 export function buildCoreGlassChannels(){
   return [
-    {id:"glass:source",label:"Source / anchors",lane:1,domain:"source",weight:1},
-    {id:"glass:lexical",label:"Lexical / terminology",lane:2,domain:"lexical",weight:.95},
-    {id:"glass:structure",label:"Graph / hypergraph",lane:3,domain:"structural",weight:.90},
-    {id:"glass:canon",label:"DiazAI + Wolfram canon check",lane:4,domain:"mathematical",weight:.90},
-    {id:"glass:philosophy",label:"Philosophy / analogy",lane:5,domain:"interpretive",weight:.80},
-    {id:"glass:synthesis",label:"Review / synthesis",lane:6,domain:"review",weight:.85}
+    {id:"glass:source",label:"Source / anchors",lane:1,domain:"source",weight:1,harnessBinding:{channel:"corpus",slot:"sources",status:"aletheia-derived-binding"}},
+    {id:"glass:lexical",label:"Lexical / terminology",lane:2,domain:"lexical",weight:.95,harnessBinding:{channel:"memory",slot:"semantic",status:"aletheia-derived-binding"}},
+    {id:"glass:structure",label:"Graph / hypergraph",lane:3,domain:"structural",weight:.90,harnessBinding:{channel:"simulation",slot:"graph",status:"aletheia-derived-binding"}},
+    {id:"glass:canon",label:"DiazAI + Wolfram canon check",lane:4,domain:"mathematical",weight:.90,harnessBinding:{channel:"audit",slot:"proof",status:"aletheia-derived-binding"}},
+    {id:"glass:philosophy",label:"Philosophy / analogy",lane:5,domain:"interpretive",weight:.80,harnessBinding:{channel:"models",slot:"inference",status:"aletheia-derived-binding"}},
+    {id:"glass:synthesis",label:"Review / synthesis",lane:6,domain:"review",weight:.85,harnessBinding:{channel:"control",slot:"checkpoint",status:"aletheia-derived-binding"}}
   ];
 }
 
