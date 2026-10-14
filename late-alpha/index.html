@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0c0e">
+<link rel="stylesheet" href="/styles.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<title>Aletheia Late Alpha</title>
+</head>
+<body>
+<header><div class="eyebrow">ALETHEIA · LATE ALPHA · SOURCE PRESERVATION</div><h1>Aletheia</h1><p>Corpus → parser → independent fabrics → graph/hypergraph → reconciliation → narrative.</p><span id="health">checking engine…</span></header>
+<nav id="tabs"><button data-tab="library" class="active">Library</button><button data-tab="reader">Reader</button><button data-tab="oracle">Oracle</button><button data-tab="fabrics">Fabrics</button><button data-tab="graph">Graph</button><button data-tab="glass">Glass</button><button data-tab="export">Export</button></nav>
+<main>
+<section id="library" class="view active"><div class="grid"><article class="card"><h2>Corpus library</h2><div id="corpora"></div></article><article class="card"><h2>Add text</h2><input id="title" placeholder="Corpus title"><textarea id="text" rows="12" placeholder="Paste a book, chapter, fragment, notes, numbers, or arbitrary text"></textarea><div class="row"><input id="file" type="file" accept=".txt,.md,.json,.csv,.xml,text/*"><button id="saveCorpus">Save corpus</button></div></article></div><article class="card"><h2>Historical / temporal envelope</h2><div id="meta" class="meta"></div><button id="saveMeta">Save context</button></article></section>
+<section id="reader" class="view"><div class="grid reader"><aside class="card"><h2 id="readerTitle">Reader</h2><select id="section"></select><button id="analyzeSection">Analyze section</button><button id="anchor">Anchor selection</button><h3>Anchors</h3><div id="anchors"></div></aside><article class="card"><div class="small" id="fingerprint"></div><div class="row"><button id="useHighlight">Use highlight</button><button id="clearSelection">Clear</button></div><div id="source" class="source"></div></article></div><article class="card" id="selectionCard" hidden><h2>Active selection</h2><blockquote id="selection"></blockquote><button id="run">Run Aletheia</button></article></section>
+<section id="oracle" class="view"><div class="grid"><article class="card"><h2>Oracle secure fetch</h2><input id="oracleUrl" placeholder="https://example.org/text.txt"><div class="row"><button id="fetch">Fetch into sandbox</button><button id="loadOracle" disabled>Load as corpus</button></div><pre id="oracleOut"></pre></article><article class="card"><h2>Research launchpad</h2><input id="query" placeholder="topic"><div class="row"><button data-search="arxiv">arXiv</button><button data-search="wiki">Wikipedia</button><button data-search="archive">Internet Archive</button></div><div id="links"></div></article></div></section>
+<section id="fabrics" class="view"><article class="card"><h2>Six independent fabrics</h2><input id="globalPrompt" placeholder="Global prompt modifier, e.g. angels/demons as AI or ET"><div id="fabricControls" class="fabricGrid"></div></article><div id="fabricResults" class="fabricGrid"></div><article class="card"><h2>Written analogy fabric</h2><pre id="narrative"></pre></article></section>
+<section id="graph" class="view"><div class="grid"><article class="card"><h2>Graph / hypergraph</h2><svg id="svg" viewBox="0 0 900 540"></svg></article><article class="card"><h2>Terminology / carriers</h2><div id="stats"></div><table><thead><tr><th>term</th><th>count</th><th>GF(257)</th></tr></thead><tbody id="terms"></tbody></table><button id="wolfram">Generate Wolfram program</button><pre id="wolframOut"></pre></article></div></section>
+<section id="glass" class="view"><div class="grid"><article class="card"><h2>Multiview Glass channels</h2><div id="channels"></div></article><article class="card"><h2>Anchor route inspector</h2><select id="routeAnchor"></select><div id="routes"></div></article></div></section>
+<section id="export" class="view"><article class="card"><h2>Research ledger / portable bundle</h2><div id="ledger"></div><button id="exportBundle">Export JSON bundle</button><p class="small">DiazAI, GrandState, Ultracode, and minting remain locked.</p></article></section>
+</main>
+<div id="toast"></div>
+<script src="/app.js"></script>
+</body></html>

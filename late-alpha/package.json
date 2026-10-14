@@ -1,0 +1,14 @@
+{
+  "name": "aletheia-late-alpha",
+  "version": "0.9.0-alpha",
+  "private": false,
+  "type": "module",
+  "description": "Aletheia late-alpha: provenance-preserving corpus ingestion, oracle sandbox, multiview glass, graph/hypergraph fabrics, temporal metadata, and independent interpretation layers.",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test",
+    "check": "node --check server.mjs && node --check app.js && node --check lib/engine.mjs && node --check lib/oracle.mjs && node --check lib/metrics.mjs && node --check lib/wolfram.mjs"
+  },
+  "engines": {"node": ">=20"},
+  "license": "MIT"
+}

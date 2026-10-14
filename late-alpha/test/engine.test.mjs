@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {terminologySweep,sourceHypergraph,createFabricState,mutateFabric,generateFabricAnalysis} from '../lib/engine.mjs';
+import {hierarchyUltrametric,crossWeightedShapeMatch} from '../lib/metrics.mjs';
+test('terminology sweep',()=>{const s=terminologySweep('Lord lord Light light light.');assert.equal(s.uniqueTerms,2);assert.equal(s.terms.find(x=>x.normalized==='light').count,3)});
+test('source hypergraph reproducible',()=>{const a=sourceHypergraph('Knowledge becomes capability. Capability requires wisdom.'),b=sourceHypergraph('Knowledge becomes capability. Capability requires wisdom.');assert.equal(a.nodes.length,b.nodes.length);assert.equal(a.hyperedges.length,b.hyperedges.length)});
+test('fabric mutation isolated',()=>{const f=createFabricState('x'),m=mutateFabric(f.literal,{prompt:'strict'});assert.equal(m.mutationDepth,1);assert.equal(f.literal.mutationDepth,0);assert.equal(f.metaphorical.mutationDepth,0)});
+test('six fabrics independent',()=>{const f=createFabricState('x');f.speculative.prompt='angels as AI';const a=generateFabricAnalysis('An angel spoke and the king heard.',f,'');assert.equal(a.fabrics.length,6);assert.equal(a.fabrics.find(x=>x.fabricId==='speculative').status,'quarantined')});
+test('ultrametric sample strong triangle',()=>{const d=(a,b)=>hierarchyUltrametric(a,b),A=['religion','jewish','apocalyptic'],B=['religion','jewish','wisdom'],C=['religion','greek','philosophy'];assert.ok(d(A,C)<=Math.max(d(A,B),d(B,C)))});
+test('shape bounded',()=>{const r=crossWeightedShapeMatch(sourceHypergraph('a b c. b c d.'),sourceHypergraph('x y z. y z q.'));assert.ok(r.score>=0&&r.score<=1)});
