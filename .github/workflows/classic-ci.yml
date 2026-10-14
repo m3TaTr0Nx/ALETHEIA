@@ -15,7 +15,10 @@ jobs:
         with:
           node-version: "22"
       - run: npm test
-      - name: Smoke test root application
+      - run: npm run build:pages
+      - run: npm run verify:pages
+
+      - name: Smoke test Node application
         run: |
           PORT=3210 node server.mjs > /tmp/aletheia.log 2>&1 &
           PID=$!
@@ -34,3 +37,21 @@ jobs:
           grep -q "Aletheia Research Apparatus" /tmp/apparatus.html
           curl --fail --silent http://127.0.0.1:3210/api/apparatus/demo > /tmp/demo.json
           node -e "const fs=require('fs'); const d=JSON.parse(fs.readFileSync('/tmp/demo.json','utf8')); if(d.minimumPairwiseSimilarity<=0.75) process.exit(1);"
+
+      - name: Smoke test static PWA
+        run: |
+          python3 -m http.server 4173 --directory _site > /tmp/pages.log 2>&1 &
+          PID=$!
+          trap "kill $PID" EXIT
+          for i in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /tmp/pages-index.html; then
+              break
+            fi
+            sleep 0.5
+          done
+          grep -q "Use highlight" /tmp/pages-index.html
+          grep -q "Install Aletheia" _site/assets/pwa-enhancements.js
+          curl --fail --silent http://127.0.0.1:4173/apparatus/ | grep -q "Aletheia Research Apparatus"
+          curl --fail --silent http://127.0.0.1:4173/data/apparatus-demo.json > /tmp/pages-demo.json
+          node -e "const fs=require('fs'); const d=JSON.parse(fs.readFileSync('/tmp/pages-demo.json','utf8')); if(d.minimumPairwiseSimilarity<=0.75) process.exit(1);"
+          curl --fail --silent http://127.0.0.1:4173/downloads/ALETHEIA_STANDALONE.html | grep -q "Embedded Aletheia Research Apparatus"
