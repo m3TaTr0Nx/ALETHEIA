@@ -1,32 +1,79 @@
 # ALETHEIA
 
-Aletheia is a reusable, corpus-preserving exploration engine for arbitrary full texts, selected chapters, highlighted passages, fragments, number sequences, philosophical/logical/theological systems, and user-defined analogy fabrics.
+Aletheia is a corpus-preserving research application for reading complete texts, selecting books/chapters/sections, highlighting source spans, and producing separate interpretive fabrics without modifying the source.
 
-## Immediate app goals
+## Current reference implementation
 
-- Mobile-first full-text corpus explorer.
-- Paste/import a complete text body and keep it locally.
-- Select a corpus and chapter/section.
-- Highlight arbitrary source text and send only that span through Aletheia.
-- Terminology Sweep with surface-form preservation, normalized lexemes, positions, capitalization distinctions, and finite-field carriers.
-- Source graph + sentence hypergraph.
-- Cross-weighted shape matching across independent philosophical, lexicographic, logical, theological, metaphysical, scientific, engineering, AI, biology, political, semiotic, and epistemic fabrics.
-- Custom user substitutions using explicit derived mappings.
-- Conservative / balanced / speculative gates.
-- AI constructive proposer: model output is derivative and cannot mutate source.
-- Wolfram substrate: canonical hypergraph, isomorphism/embedding, finite-field and multiway reconciliation through a configurable backend, with deterministic local fallback.
-- Exportable provenance-preserving Aletheia Fabric Bundles.
+The root application is the supported build.
 
-## Core invariant
+It provides:
 
-**SOURCE != INTERPRETATION**
+- local full-text corpus import;
+- corpus and section selection;
+- highlight-to-Aletheia analysis;
+- exact source preservation;
+- terminology sweep;
+- local graph and hypergraph projection;
+- customizable analogy/substitution mappings;
+- philosophical, lexicographic, logical, theological, metaphysical, scientific, engineering, AI/information, biological, political, semiotic, and epistemic lenses;
+- conservative, balanced, and speculative gates;
+- a local deterministic constructive-proposer fallback;
+- optional external model endpoint;
+- optional Wolfram computation endpoint;
+- provenance-preserving JSON export;
+- mobile and desktop responsive use.
 
-Source objects and source graphs are immutable. Analogies, substitutions, reconstructions, model proposals, graph completions, narratives, and Wolfram computations remain separate derived objects.
+Run locally with Node 20+:
 
-## Current firewall
+```bash
+npm start
+```
 
-DiazAI export, GrandState load, Ultracode compile, and MCP/NFT-style minting remain disabled until provenance confirmation, merge-integrity confirmation, and explicit authorization.
+Then open `http://localhost:3000`.
+
+## Repository boundaries
+
+Executable code and formal protocol specifications are kept separate.
+
+- `index.html`, `server.mjs`, `package.json`, `test/` — supported executable application.
+- `schemas/` — formal data contracts only.
+- `docs/` — engineering and protocol specifications.
+- `docs/capsules/` — non-executable philosophical, metaphorical, speculative, and research capsules.
+- experimental runtime mutations are not merged into `main` until they pass review against the supported corpus application.
+
+See `docs/ENGINEERING_BOUNDARIES.md`.
+
+## Core invariants
+
+```
+SOURCE != INTERPRETATION
+VISIBILITY != WRITE AUTHORITY
+WRITE AUTHORITY != MERGE AUTHORITY
+MERGE AUTHORITY != SOURCE MUTATION
+```
+
+Source text and source graphs are immutable. Model output, analogies, substitutions, reconstructions, graph completions, narratives, and computational results remain derived objects with separate lineage.
+
+## DiazAI status
+
+Aletheia is intentionally sandboxed from DiazAI, GrandState, Ultracode, and any minting or publishing layer.
+
+No production DiazAI adapter is implemented on `main` until the actual DiazAI object/state contract is confirmed. See `docs/DIAZAI_BRIDGE_CONTRACT.md`.
 
 ## Corpus policy
 
-Aletheia is designed to ingest complete user-supplied, licensed, or public-domain corpora. This repository does not redistribute third-party copyrighted libraries.
+Aletheia is designed to ingest user-supplied, licensed, or public-domain corpora. The repository does not redistribute third-party copyrighted libraries.
+
+## Release discipline
+
+Changes to the supported application should preserve:
+
+1. source immutability;
+2. book/chapter/highlight workflow;
+3. independent interpretive layers;
+4. explicit provenance;
+5. reversible exports;
+6. mobile usability;
+7. no speculative ontology embedded as runtime truth.
+
+The default branch is the stable working line. Experimental branches are treated as quarantined research until reviewed.
