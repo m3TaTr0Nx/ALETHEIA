@@ -1,9 +1,9 @@
 {
   "name": "aletheia",
-  "version": "0.1.0",
+  "version": "0.2.0-alpha",
   "private": false,
   "type": "module",
-  "description": "Corpus-preserving analogy fabric and hypergraph explorer.",
+  "description": "Corpus-preserving analogy fabric, X-Way Glass routing, DiazAI read-only canon harness, and multiscale graph research apparatus.",
   "scripts": {
     "start": "node server.mjs",
     "test": "node --test"
