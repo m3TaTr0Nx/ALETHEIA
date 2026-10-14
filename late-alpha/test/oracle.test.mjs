@@ -1,0 +1,1 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {validatePublicUrl} from '../lib/oracle.mjs';test('blocks localhost',async()=>assert.rejects(()=>validatePublicUrl('http://localhost:3000/x')));test('blocks non-http',async()=>assert.rejects(()=>validatePublicUrl('file:///etc/passwd')));
