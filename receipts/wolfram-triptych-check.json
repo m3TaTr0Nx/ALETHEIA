@@ -1,0 +1,38 @@
+{
+  "schema": "aletheia.wolfram.triptych-check.v1",
+  "verified_at": "2026-10-13",
+  "graphs": {
+    "Genesis": {
+      "vertexCount": 8,
+      "edgeCount": 10,
+      "degreeSequence": [2,2,2,2,3,3,3,3],
+      "transferMotifPresent": true,
+      "transformMotifPresent": true,
+      "consequenceMotifPresent": true,
+      "automorphismOrder": 1
+    },
+    "Enoch": {
+      "vertexCount": 9,
+      "edgeCount": 12,
+      "degreeSequence": [2,2,2,2,2,3,3,4,4],
+      "transferMotifPresent": true,
+      "transformMotifPresent": true,
+      "consequenceMotifPresent": true,
+      "automorphismOrder": 1
+    },
+    "Prometheus": {
+      "vertexCount": 8,
+      "edgeCount": 10,
+      "degreeSequence": [2,2,2,2,2,3,3,4],
+      "transferMotifPresent": true,
+      "transformMotifPresent": true,
+      "consequenceMotifPresent": true,
+      "automorphismOrder": 2
+    }
+  },
+  "genesisPrometheusIsomorphic": false,
+  "allShareTransferMotif": true,
+  "allShareTransformMotif": true,
+  "allShareConsequenceMotif": true,
+  "interpretation": "independent structural verification only; no semantic identity claim"
+}
