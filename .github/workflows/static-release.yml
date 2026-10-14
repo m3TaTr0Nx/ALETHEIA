@@ -1,0 +1,44 @@
+name: Publish Aletheia Static Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/static-release.yml"
+      - "package.json"
+      - "index.html"
+      - "public/**"
+      - "pwa/**"
+      - "scripts/**"
+      - "src/**"
+      - "lib/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm test
+      - run: npm run build:pages
+      - run: npm run verify:pages
+      - name: Package release artifacts
+        run: |
+          cp _site/downloads/ALETHEIA_STANDALONE.html ALETHEIA_STANDALONE_v0.3.html
+          (cd _site && zip -qr ../ALETHEIA_v0.3_STATIC_RELEASE.zip .)
+          sha256sum ALETHEIA_STANDALONE_v0.3.html ALETHEIA_v0.3_STATIC_RELEASE.zip > SHA256SUMS.txt
+      - name: Publish or update prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view v0.3.0-alpha >/dev/null 2>&1; then
+            gh release upload v0.3.0-alpha               ALETHEIA_STANDALONE_v0.3.html               ALETHEIA_v0.3_STATIC_RELEASE.zip               SHA256SUMS.txt               --clobber
+          else
+            gh release create v0.3.0-alpha               ALETHEIA_STANDALONE_v0.3.html               ALETHEIA_v0.3_STATIC_RELEASE.zip               SHA256SUMS.txt               --target "$GITHUB_SHA"               --title "Aletheia v0.3.0-alpha — Static Mobile Release"               --notes "Installable/static Aletheia release. Includes the standalone single-file corpus explorer + embedded Research Apparatus and the full static PWA bundle. Replit is not required. GitHub Pages remains optional."               --prerelease
+          fi
