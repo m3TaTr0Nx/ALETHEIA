@@ -1,0 +1,22 @@
+services:
+  aletheia:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: "3000"
+      DIAZAI_CANON_ROOT: /canon/diazai
+      DIAZAI_CANON_INDEX: DIAZAI_ARTIFACT_DATABASE_2026-09-13.json
+    volumes:
+      - "${DIAZAI_HOST_PATH:-./diazai-canon}:/canon/diazai:ro"
+      - "aletheia-data:/data/aletheia"
+      - "aletheia-receipts:/data/receipts"
+    read_only: false
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+volumes:
+  aletheia-data:
+  aletheia-receipts:
